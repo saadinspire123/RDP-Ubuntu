@@ -11,7 +11,7 @@ jobs:
     - name: Download
       run: sudo snap install ngrok
     - name: Auth
-      run: ngrok authtoken 1lM7ngNsY5LGFZLz5OVFrrKGO4V_6Zn2vX8aw9BwNb5mLSJkc
+      run: sudo ngrok authtoken 1lM7ngNsY5LGFZLz5OVFrrKGO4V_6Zn2vX8aw9BwNb5mLSJkc
 
     - run: sudo apt-get -y install xrdp
     - run: sudo ufw allow 3389/tcp
