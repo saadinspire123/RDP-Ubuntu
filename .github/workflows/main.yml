@@ -9,7 +9,7 @@ jobs:
 
     steps:
     - name: Download
-      run: sudo apt install ngrok
+      run: sudo snap install ngrok
     - name: Auth
       run: ngrok config add-authtoken 1lM7ngNsY5LGFZLz5OVFrrKGO4V_6Zn2vX8aw9BwNb5mLSJkc
 
