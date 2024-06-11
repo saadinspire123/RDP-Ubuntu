@@ -17,12 +17,7 @@ jobs:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Enable SSH
       run: sudo systemctl start ssh
-    - name: Create User with Sudo (**HIGH SECURITY RISK)  **
-      run: sudo useradd -m runneradmin && sudo echo "P@ssw0rd!" | sudo passwd runneradmin  # Creates user and sets weak password
-    - name: Grant Sudo Access (**HUGE SECURITY RISK)**
-      run: sudo usermod -aG sudo runneradmin  # Grants sudo access to user with weak password
-
-    # **Strongly Consider SSH Key-Based Authentication Instead!**
-
+    - name: Allow Remote Login (**Security Risk - Consider Key-Based Authentication)  **
+      run: sudo usermod -aG sudo runner  # Grant sudo access to user 'runner' (Security Risk)
     - name: Create Tunnel (expose port 22 for SSH)
       run: ./ngrok tcp 22
