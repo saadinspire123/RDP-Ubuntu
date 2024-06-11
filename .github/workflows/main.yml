@@ -21,5 +21,12 @@ jobs:
         sudo systemctl start ssh
     - name: Allow Remote Login (**Security Risk - Consider Key-Based Authentication)
       run: echo "P@ssw0rd!" | sudo -S usermod -aG sudo runner  # Grant sudo access to user 'runner' (Security Risk)
-    - name: Create Tunnel (expose port 22 for SSH)
-      run: ./ngrok tcp 22
+    - name: Install xrdp
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y xrdp
+        sudo systemctl enable xrdp
+        sudo systemctl start xrdp
+        echo "P@ssw0rd!" | sudo -S usermod -aG ssl-cert runner
+    - name: Create Tunnel (expose port 3389 for RDP)
+      run: ./ngrok tcp 3389
