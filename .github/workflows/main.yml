@@ -16,8 +16,10 @@ jobs:
       env:
         NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
     - name: Enable SSH
-      run: sudo systemctl start ssh
-    - name: Allow Remote Login (**Security Risk - Consider Key-Based Authentication)  **
-      run: sudo usermod -aG sudo runner  # Grant sudo access to user 'runner' (Security Risk)
+      run: |
+        echo "runner:P@ssw0rd!" | sudo chpasswd
+        sudo systemctl start ssh
+    - name: Allow Remote Login (**Security Risk - Consider Key-Based Authentication)
+      run: echo "P@ssw0rd!" | sudo -S usermod -aG sudo runner  # Grant sudo access to user 'runner' (Security Risk)
     - name: Create Tunnel (expose port 22 for SSH)
       run: ./ngrok tcp 22
