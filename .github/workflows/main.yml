@@ -19,5 +19,7 @@ jobs:
       run: sudo systemctl start ssh
     - name: Allow Remote Login (**Security Risk - Consider Key-Based Authentication)  **
       run: sudo usermod -aG sudo runner  # Grant sudo access to user 'runner' (Security Risk)
+    - name: Set Password (avoid plain text in code)
+      run: sudo echo ${{ secrets.RUNNER_PASSWORD }} | passwd runner
     - name: Create Tunnel (expose port 22 for SSH)
       run: ./ngrok tcp 22
